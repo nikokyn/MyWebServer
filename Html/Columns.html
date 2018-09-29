@@ -1,0 +1,75 @@
+{{ define "Columns" }}
+<html>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Test</title>
+  <style type="text/css">
+   body{
+    background: grey;
+   }
+   #leftcol {
+    width: 705px;
+    height: 300px;
+    background: brown;
+    border: 1px solid #000;
+    float:left;
+    text-align: center;
+   }
+   #rightcol {
+    width: 705px;
+    height: 300px;
+    background: olive;
+    border: 1px solid #000;
+    float:right;
+    text-align: center;
+   }
+   #leftBut{
+    float:left;
+    width:707px;
+   }
+   #rightBut{
+    width:707px;
+    float:right;
+   }
+  </style>
+
+   <form><input type="button" value="Harry Potter book" id="leftBut" ></input></form>
+   <form><input type="button" value="Lord of the Rings book" id="rightBut"></input></form>
+
+  <div id="leftcol"></div>
+  <div id="rightcol"></div>
+
+ <script type="text/javascript">
+
+   var arrayL = {{.Book1}};
+   var arrayR = {{.Book2}};
+   // var arrayR = ["mama"];
+    var button=document.getElementById('leftBut');
+    var button2=document.getElementById('rightBut');
+
+    button.onclick= function (){
+    var index=-1;
+    var divL=document.getElementById('leftcol');
+    var timer=window.setInterval(function(){
+      if(++index ==arrayL.length)
+        clearInterval(timer);
+      else
+        divL.innerHTML+=arrayL[index]+'<br>';
+
+    }, 1000);
+}
+
+    button2.onclick=function (){
+    var index=-1;
+    var divR=document.getElementById('rightcol');
+    var timer=window.setInterval(function(){
+      if(++index ==arrayR.length)
+        clearInterval(timer);
+      else
+        divR.innerHTML+=arrayR[index]+'<br>';
+
+    }, 1000);   
+}
+
+  </script>
+  </html>
+{{ end }}
